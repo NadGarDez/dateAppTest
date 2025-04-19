@@ -32,7 +32,6 @@ export default function RootLayout() {
       <Stack
       >
         <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="match" options={{ headerShown: false }} />
         <Stack.Screen name="detail" options={{ headerShown: false}} />
       </Stack>
     </ThemeProvider>

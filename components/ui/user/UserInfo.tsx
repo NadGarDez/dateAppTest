@@ -1,4 +1,5 @@
 import { InfoFigure } from "@/assets/svg/figures";
+import { useRouter } from "expo-router";
 import React from "react";
 import {
   StyleSheet,
@@ -6,6 +7,7 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import Animated, {
+  runOnJS,
   useAnimatedStyle,
   useSharedValue,
   withSequence,
@@ -96,6 +98,8 @@ export const UserInfo = (props: props): JSX.Element => {
   const { name, age, city, country } = props;
   const scale = useSharedValue<number>(1);
 
+  const {navigate} = useRouter();
+
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [{ scale: scale.value }],
   }));
@@ -105,7 +109,11 @@ export const UserInfo = (props: props): JSX.Element => {
       withTiming(0.8, {
         duration: 100,
       }),
-      withSpring(1.1)
+      withSpring(1.1, {},
+        () => {
+          runOnJS(navigate)('/detail')
+        }
+      )
     );
   };
   return (

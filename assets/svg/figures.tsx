@@ -388,18 +388,19 @@ export const XFigure = (): JSX.Element => {
   );
 };
 
-export const CloseSideBarFigure = (): JSX.Element => {
+export const CloseSideBarFigure = (props: { color?: string }): JSX.Element => {
+  const { color = "#FFF" } = props;
   return (
     <Svg width={24} height={24} viewBox="0 0 24 24" fill="none">
       <G clipPath="url(#clip0_2058_9842)">
         <Path
           d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"
-          fill="#fff"
+          fill={color}
         />
       </G>
       <Defs>
         <ClipPath id="clip0_2058_9842">
-          <Path fill="#fff" d="M0 0H24V24H0z" />
+          <Path fill={color} d="M0 0H24V24H0z" />
         </ClipPath>
       </Defs>
     </Svg>
@@ -560,3 +561,35 @@ export const LeCafeFigure = () => {
     </View>
   );
 };
+
+export const ExpandFigure = (): JSX.Element => {
+  return (
+    <Svg width={24} height={24} viewBox="0 0 24 24" fill="none">
+      <Path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M4.707 16.707l-1.414-1.414L12 6.586l8.707 8.707-1.414 1.414L12 9.414l-7.293 7.293z"
+        fill="#fff"
+      />
+    </Svg>
+  );
+};
+
+export const CollapseFigure = (): JSX.Element => {
+  return (
+    <Svg
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+    >
+      <Path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M19.293 7.293l1.414 1.414L12 17.414 3.293 8.707l1.414-1.414L12 14.586l7.293-7.293z"
+        fill="#fff"
+      />
+    </Svg>
+  );
+};
+
