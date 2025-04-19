@@ -4,7 +4,7 @@ import {
   RelationshipFigure,
 } from "@/assets/svg/figures";
 import { FilterItem } from "@/components/FilterItem";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components/native";
 
 const ItemsContainer = styled.View`
@@ -14,11 +14,25 @@ const ItemsContainer = styled.View`
   justify-content: space-between;
 `;
 
-const items = [ FriendShipFigure,DatingFigure, RelationshipFigure];
-const textItems = ['Amistad', 'Cita', 'Relacion']
+const items = [FriendShipFigure, DatingFigure, RelationshipFigure];
+const textItems = ["Amistad", "Cita", "Relacion"];
 
-export const UserFilter = (): JSX.Element => {
+interface props {
+  stage: number;
+}
+
+export const UserFilter = (props: props): JSX.Element => {
+  const { stage } = props;
   const [active, setActive] = useState<number>(0);
+
+  useEffect(
+    () => {
+      if(stage === 1) {
+        setActive(0)
+      }
+    },
+    [stage]
+  )
 
   return (
     <ItemsContainer>

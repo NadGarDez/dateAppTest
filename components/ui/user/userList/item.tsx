@@ -172,12 +172,9 @@ export const ListUserItem = (props: props): JSX.Element => {
           duration: 500,
           easing: Easing.bezier(0.25, 0.1, 0.25, 1),
         }),
-        withSpring(
-          0,
-          {
-            duration: 800,
-          }
-        )
+        withSpring(0, {
+          duration: 800,
+        })
       )
     );
 
@@ -266,7 +263,7 @@ export const ListUserItem = (props: props): JSX.Element => {
         <Image source={source}>
           <ItemsContainer>
             <ListContainer>
-              <UserFilter />
+              <UserFilter {...{stage}}/>
             </ListContainer>
             <RestContainer>
               <UserInfo {...rest} />
