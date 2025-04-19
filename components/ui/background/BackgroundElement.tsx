@@ -1,11 +1,7 @@
-import React, { Children } from "react";
+import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
-import { Image, StyleSheet, View, Text} from "react-native";
+import { StyleSheet, View} from "react-native";
 import { LeftBottomFigure, LeftTopFigure, RightBottomFigure, RightTopFigure } from "@/assets/svg/figures";
-
-const figure = require('@/assets/images/backgroundFigure.png');
-
-console.log(figure)
 
 const styles = StyleSheet.create({
   container: {

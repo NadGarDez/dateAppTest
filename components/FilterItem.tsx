@@ -43,7 +43,7 @@ export const FilterItem = (props: props): JSX.Element => {
   const { children, active, onPress, message } = props;
   const opacity = useSharedValue<number>(active ? 1 : 0.5);
   const borderColor = useSharedValue<string>(active ? "#ffb1c7" : "#ffb1c700");
-  const color = useSharedValue<string>(active ? "#FFF" : "blue");
+  const color = useSharedValue<string>(active ? "#FFF" : "transparent");
 
   useEffect(() => {
     if (active) {
