@@ -19,6 +19,7 @@ interface props {
     age: number;
     city: string;
     country: string;
+    index: number
   };
   stage: number;
 }

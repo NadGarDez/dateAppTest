@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { Link, useNavigation } from "expo-router";
+import { Link, useLocalSearchParams, useNavigation } from "expo-router";
 import DetailHeader from "@/components/ui/headers/detailHeader";
 import styled from "styled-components/native";
 import Animated, {
@@ -66,13 +66,12 @@ const DirectionText = styled.Text`
   color: black;
 `;
 
-
 const ParagraphText = styled.Text`
-font-weight: 400;
-font-size: 14px;
-line-height: 16px;
-letter-spacing: 0px;
-color: black;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 0px;
+  color: black;
 `;
 
 const InfoContainer = styled.View`
@@ -105,8 +104,14 @@ const styles = StyleSheet.create({
   },
 });
 
+interface SearchParams {
+  index: number;
+}
+
 const DetailScreen = (): JSX.Element => {
-  const { source, name, age, city, country } = items[0];
+  const { index } = useLocalSearchParams();
+
+  const { source, name, age, city, country } = items[Number(index) ?? 0];
 
   const { goBack } = useNavigation();
 
@@ -154,11 +159,23 @@ const DetailScreen = (): JSX.Element => {
             <ExpandButton onChange={onChange} />
           </View>
         </UpperContainer>
-        <View style={{
-          marginTop:25
-        }}>
+        <View
+          style={{
+            marginTop: 25,
+          }}
+        >
           <Text>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur at dui non elit tristique semper. Nam in tincidunt ex. Integer non turpis non lorem molestie euismod. Nullam eget tempus nisl. Nullam vitae tincidunt lorem, at sollicitudin risus. Phasellus aliquam massa nec sem porta, vitae iaculis enim efficitur. Nunc suscipit purus eu massa tempor, vitae commodo eros scelerisque. Nulla non augue mi. Fusce in fringilla eros. Nulla aliquam, justo sed porta aliquam, elit massa mattis lectus, mollis tristique metus nisi vel lacus. Maecenas suscipit aliquet enim id pellentesque. Cras pharetra egestas tortor sit amet cursus. Maecenas libero erat, pretium non efficitur lobortis, vulputate eget leo.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+            at dui non elit tristique semper. Nam in tincidunt ex. Integer non
+            turpis non lorem molestie euismod. Nullam eget tempus nisl. Nullam
+            vitae tincidunt lorem, at sollicitudin risus. Phasellus aliquam
+            massa nec sem porta, vitae iaculis enim efficitur. Nunc suscipit
+            purus eu massa tempor, vitae commodo eros scelerisque. Nulla non
+            augue mi. Fusce in fringilla eros. Nulla aliquam, justo sed porta
+            aliquam, elit massa mattis lectus, mollis tristique metus nisi vel
+            lacus. Maecenas suscipit aliquet enim id pellentesque. Cras pharetra
+            egestas tortor sit amet cursus. Maecenas libero erat, pretium non
+            efficitur lobortis, vulputate eget leo.
           </Text>
         </View>
       </Animated.View>

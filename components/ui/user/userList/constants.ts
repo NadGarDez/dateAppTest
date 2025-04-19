@@ -5,6 +5,7 @@ export const items = [
     age: 32,
     city: "Miraflores",
     country: "Peru",
+    index: 0
   },
 
   {
@@ -13,6 +14,7 @@ export const items = [
     age: 32,
     city: "Surco",
     country: "Peru",
+    index: 1
   },
   {
     source: require("@/assets/images/profile3.png"),
@@ -20,5 +22,6 @@ export const items = [
     age: 32,
     city: "Lima",
     country: "Peru",
+    index: 2
   },
 ];

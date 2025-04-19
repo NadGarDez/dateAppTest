@@ -23,6 +23,7 @@ interface props {
     age: number;
     city: string;
     country: string;
+    index: number
   };
   changeStage: (stage: 1 | 2) => void;
   stage: number;

@@ -3,7 +3,6 @@ import { useRouter } from "expo-router";
 import React from "react";
 import {
   StyleSheet,
-  TouchableOpacity,
   TouchableWithoutFeedback,
 } from "react-native";
 import Animated, {
@@ -21,6 +20,7 @@ interface props {
   age: number;
   city: string;
   country: string;
+  index: number;
 }
 
 const Container = styled.View`
@@ -70,17 +70,6 @@ const DirectionText = styled.Text`
   color: white;
 `;
 
-const InfoContainer = styled.View`
-  display: flex;
-  flex-direction: row;
-  width: 32px;
-  height: 32px;
-  align-items: center;
-  justify-content: center;
-  border-radius: 16px;
-  background-color: #ff6b86;
-`;
-
 const styles = StyleSheet.create({
   buttom: {
     display: "flex",
@@ -95,10 +84,10 @@ const styles = StyleSheet.create({
 });
 
 export const UserInfo = (props: props): JSX.Element => {
-  const { name, age, city, country } = props;
+  const { name, age, city, country, index } = props;
   const scale = useSharedValue<number>(1);
 
-  const {navigate} = useRouter();
+  const { push } = useRouter();
 
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [{ scale: scale.value }],
@@ -109,11 +98,14 @@ export const UserInfo = (props: props): JSX.Element => {
       withTiming(0.8, {
         duration: 100,
       }),
-      withSpring(1.1, {},
-        () => {
-          runOnJS(navigate)('/detail')
-        }
-      )
+      withSpring(1.1, {}, () => {
+        runOnJS(push)({
+          pathname: "/detail",
+          params: {
+            index,
+          },
+        });
+      })
     );
   };
   return (
