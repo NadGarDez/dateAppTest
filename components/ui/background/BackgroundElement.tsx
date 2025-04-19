@@ -16,6 +16,8 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import RootHeader from "../headers/rootHeader";
+import SideBarHeader from "../headers/SideBarHeader";
+import { SideBar } from "../SideBar";
 
 const width = Dimensions.get("screen").width;
 
@@ -51,6 +53,7 @@ const styles = StyleSheet.create({
     height: "100%",
     zIndex: -1,
     backgroundColor: "#FFB1C7",
+    flex: 1,
   },
   leftBottomStyle: {
     position: "absolute",
@@ -103,6 +106,8 @@ export const BackgroundElement = (props: props): JSX.Element => {
 
   const traslateX = useSharedValue<number>(0);
 
+  const headerTraslateX = useSharedValue<number>(0);
+
   const animatedStyle = useAnimatedStyle(() => ({
     left: left.value,
   }));
@@ -115,10 +120,17 @@ export const BackgroundElement = (props: props): JSX.Element => {
     ],
   }));
 
+  const headerTraslationAnimatedStyle = useAnimatedStyle(() => ({
+    transform: [
+      {
+        translateX: headerTraslateX.value,
+      },
+    ],
+  }));
+
   const { type, children } = props;
 
   const showSideBar = () => {
-    console.log("show");
     left.value = withTiming(0, {
       duration: 400,
       easing: Easing.bezier(0.25, 0.1, 0.25, 1),
@@ -131,6 +143,11 @@ export const BackgroundElement = (props: props): JSX.Element => {
         easing: Easing.bezier(0.25, 0.1, 0.25, 1),
       })
     );
+
+    headerTraslateX.value = withTiming(width, {
+      duration: 400,
+      easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+    });
   };
 
   const hideSideBar = () => {
@@ -146,14 +163,15 @@ export const BackgroundElement = (props: props): JSX.Element => {
         easing: Easing.bezier(0.25, 0.1, 0.25, 1),
       })
     );
+
+    headerTraslateX.value = withTiming(0, {
+      duration: 400,
+      easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+    });
   };
   const onPressMenu = () => {
     setSideBarVisible(!sideBarVisible);
-    if (sideBarVisible) {
-      hideSideBar();
-    } else {
-      showSideBar();
-    }
+    showSideBar();
   };
 
   return (
@@ -167,9 +185,12 @@ export const BackgroundElement = (props: props): JSX.Element => {
           locations={[0.5, 1]}
         />
       </View>
-      <Animated.View
-        style={[styles.sideContainer, animatedStyle]}
-      ></Animated.View>
+      <Animated.View style={[styles.sideContainer, animatedStyle]}>
+        <View style={[styles.contentContainer]}>
+          <SideBarHeader onPresClose={hideSideBar} />
+          <SideBar />
+        </View>
+      </Animated.View>
       <View style={styles.leftBottomStyle}>
         <LeftBottomFigure color="white" />
       </View>
@@ -182,9 +203,13 @@ export const BackgroundElement = (props: props): JSX.Element => {
       <View style={styles.leftTopStyle}>
         <LeftTopFigure color="white" />
       </View>
-      <View style={[styles.contentContainer, traslationAnimatedStyle]}>
-        <RootHeader {...{ onPressMenu }} />
-        <Animated.View style={[{flex:1},traslationAnimatedStyle]}>
+      <View style={[styles.contentContainer]}>
+        <Animated.View
+          style={[{ display: "flex" }, headerTraslationAnimatedStyle]}
+        >
+          <RootHeader {...{ onPressMenu }} />
+        </Animated.View>
+        <Animated.View style={[{ flex: 1 }, traslationAnimatedStyle]}>
           {children}
         </Animated.View>
       </View>
