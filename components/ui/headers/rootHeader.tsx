@@ -4,6 +4,10 @@ import React from "react";
 import { Text, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 
+interface props {
+  onPressMenu: () => void
+}
+
 const Container = styled.View`
   display: flex;
   flex-direction: row;
@@ -24,13 +28,16 @@ const ColumnRight = styled.View`
   flex-grow: 1;
 `;
 
-const RootHeader = (): JSX.Element => {
+const RootHeader = (props:props): JSX.Element => {
+
+
+  const {onPressMenu} = props;
   return (
     <>
       <StatusBar style="light" />
       <Container>
         <ColumnLeft>
-          <TouchableOpacity onPress={() => {}}>
+          <TouchableOpacity onPress={onPressMenu}>
             <MenuIcon />
           </TouchableOpacity>
         </ColumnLeft>

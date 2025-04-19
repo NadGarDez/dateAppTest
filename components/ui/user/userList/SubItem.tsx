@@ -134,7 +134,7 @@ export const ListUserSubItem = (props: props): JSX.Element => {
         <Image source={source}>
           <ItemsContainer>
             <ListContainer>
-              <UserFilter />
+              <UserFilter {...{stage}} />
             </ListContainer>
             <RestContainer>
               <UserInfo {...rest} />

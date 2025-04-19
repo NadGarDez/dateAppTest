@@ -49,7 +49,7 @@ const IndexScreen = (): JSX.Element => {
     <View style={styles.baseContainer}>
       <BackgroundElement type="third">
         <>
-          <RootHeader />
+          {/* <RootHeader /> */}
           <UserList />
         </>
       </BackgroundElement>
