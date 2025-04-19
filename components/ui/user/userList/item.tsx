@@ -56,7 +56,7 @@ const Container = styled.View`
   overflow: hidden;
   position: absolute;
   top: 0px;
-  zindex: 2;
+  z-index: 2;
 `;
 
 const Image = styled.ImageBackground`

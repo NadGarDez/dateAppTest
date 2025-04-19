@@ -44,7 +44,7 @@ const TitleContainer = styled.View`
   flex-direction: row;
   flex-grow: 1;
   align-items: center;
-  height: 32;
+  height: 32px;
 `;
 
 const NameText = styled.Text`

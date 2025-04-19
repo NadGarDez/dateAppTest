@@ -15,7 +15,7 @@ const LayerA = styled.View`
   height: 100%;
   top: 0px;
   left: 0px;
-  zindex: 2;
+  z-index: 2;
 `;
 
 const LayerB = styled.View`
@@ -24,7 +24,7 @@ const LayerB = styled.View`
   height: 100%;
   top: 0px;
   left: 0px;
-  zindex: 3;
+  z-index: 3;
 `;
 
 const UserList = (): JSX.Element => {
